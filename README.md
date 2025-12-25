@@ -1,21 +1,16 @@
-# 🚖 SpotMe - Ride Sharing Application
-
-Android ride-sharing app connecting passengers with drivers in real-time.
-
-## Features
-- 👤 Passenger ride requests
-- 🚗 Driver ride acceptance
-- 📱 Real-time updates
-- 💾 SQLite database
-- 🔐 User authentication
-
-## Quick Start
-1. Clone: `git clone https://github.com/sandilerasimeni/SpotMe-RideSharing.git`
-2. Open in Android Studio
-3. Run on emulator/device
-
-## Tech Stack
-- Java | Android SDK | SQLite | Material Design
-
----
-*Professional documentation coming soon!*
+# SpotMe Ride Sharing App 
+ 
+**Developer**: Sandile Rasimeni 
+**GitHub**: https://github.com/sandilerasimeni 
+ 
+## Project Description 
+Complete Android ride-sharing application with passenger and driver interfaces. 
+13 Java files including database management, user authentication, and real-time ride matching. 
+ 
+## Files: 
+- DatabaseHelper.java - SQLite database manager 
+- LoginActivity.java - User authentication 
+- PassengerHomeActivity.java - Passenger dashboard 
+- DriverHomeActivity.java - Driver interface 
+- RequestRideActivity.java - Ride booking 
+- And 8 more Java files 
