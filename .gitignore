@@ -27,6 +27,13 @@ render.experimental.xml
 *.jks
 *.keystore
 
+*.apk
+*.ap_
+build/
+.gradle/
+local.properties
+*.iml
+.DS_Store
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
