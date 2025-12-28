@@ -115,15 +115,45 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void handleRegister() {
-        String email = etEmail.getText().toString().trim();
-        if (email.isEmpty()) {
-            Toast.makeText(this, "Enter an email to register", Toast.LENGTH_SHORT).show();
-            return;
-        }
+   private void handleRegister() {
+    String email = etEmail.getText().toString().trim();
+    String password = etPassword.getText().toString().trim();
 
-        String userId = UUID.randomUUID().toString();
-        // Insert logic here...
-        Toast.makeText(this, "Registered " + selectedUserType + "!", Toast.LENGTH_SHORT).show();
+    if (email.isEmpty() || password.isEmpty()) {
+        Toast.makeText(this, "Email and password required", Toast.LENGTH_SHORT).show();
+        return;
     }
+
+    SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+    // Check if user already exists
+    Cursor cursor = db.rawQuery(
+            "SELECT * FROM users WHERE email = ? AND user_type = ?",
+            new String[]{email, selectedUserType}
+    );
+
+    if (cursor.moveToFirst()) {
+        cursor.close();
+        Toast.makeText(this, "User already exists. Please login.", Toast.LENGTH_SHORT).show();
+        return;
+    }
+    cursor.close();
+
+    String userId = UUID.randomUUID().toString();
+
+    ContentValues values = new ContentValues();
+    values.put("user_id", userId);
+    values.put("email", email);
+    values.put("password", password); // ⚠️ Hash later for security
+    values.put("user_type", selectedUserType);
+
+    long result = db.insert("users", null, values);
+
+    if (result != -1) {
+        Toast.makeText(this, "Registered " + selectedUserType + " successfully!", Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show();
+    }
+}
+
 }
